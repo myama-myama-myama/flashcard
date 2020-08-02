@@ -1,0 +1,59 @@
+from flask_blog import db
+
+from sqlalchemy import ForeignKey
+from sqlalchemy.orm import relationship
+
+
+# Q & A
+class Entry(db.Model): 
+    __tablename__ = 'entries' 
+    id = db.Column(db.Integer, primary_key = True) 
+    question = db.Column(db.Text)
+    answer = db.Column(db.Text)
+
+    def __init__( self, question = None, answer = None):
+        self.question = question
+        self.answer = answer
+
+    def __repr__( self):
+        return '<Entry id:{} question:{} answer:{}>'.format( self.id, self.question, self.answer)
+
+# User's name    
+class User(db.Model): 
+    __tablename__ = 'users' 
+    id = db.Column(db.Integer, primary_key = True) 
+    name = db.Column(db.Text)
+    passwd = db.Column(db.Text)
+
+    def __init__( self, name = None, passwd = None):
+        self.name = name
+        self.passwd = passwd
+
+    def __repr__( self):
+        return '<User id:{} name:{} passwd:{}>'.format( self.id, self.name, self.passwd)
+
+# Answer
+# User's id & questions'id
+class Answer(db.Model): 
+    __tablename__ = 'answers' 
+    id = db.Column(db.Integer, primary_key = True)
+    correct = db.Column(db.Integer)
+    user_id = db.Column(db.Integer, ForeignKey('users.id'))
+    q_id = db.Column(db.Integer)
+    
+    user = relationship("User", back_populates="answers")
+
+    def __init__( self, correct = None, user_id = None, q_id = None ):
+        self.correct = correct
+        self.user_id = user_id
+        self.q_id = q_id        
+
+    def __repr__( self):
+        return '<Answer id:{} correct:{}>'.format( self.id, self.correct)
+
+    
+User.answers = relationship(
+    "Answer", order_by=Answer.id, back_populates="user")
+
+
+

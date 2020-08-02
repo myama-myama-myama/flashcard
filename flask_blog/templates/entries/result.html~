@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<h5>  {{ username }}さんの結果</h5 >
+<br>
+<h5> 正解 {{result[0]}} / {{result[2]}}  </h5>
+<h5> 間違い {{result[1]}} / {{result[2]}}  </h5>
+<a href="{{ url_for('show_entries') }}"
+   class ="btn btn-primary"> もう一度解く </a >
+{% endblock %}

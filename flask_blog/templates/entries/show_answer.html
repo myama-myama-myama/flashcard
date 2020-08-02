@@ -1,0 +1,20 @@
+{% extends "layout.html" %} 
+{% block body %} 
+<h2>{{ id }}</h2 > 
+<br> 
+{{ entry.answer }} 
+<br>
+<br> 
+<div class ="btn-group">
+  <form action ="{{ url_for('next_question', id = id) }}" method ="POST"> 
+    <button type ="submit" class ="btn btn-secondary" name='action' value='correct'>
+      正解 
+    </button >
+    <button type ="submit" class ="btn btn-secondary" name='action' value='wrong'>
+      間違い
+    </button > 
+  </form >
+</div >
+
+{% endblock %}
+ 

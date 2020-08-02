@@ -1,0 +1,23 @@
+{% extends "layout.html" %} 
+{% block body %}
+
+<form action ="{{ url_for('add_user') }}" method = post class = add-entry >
+  <h5>
+    新規ユーザを登録します。
+  </h5>
+
+  <div class ="form-group"> 
+    <label for ="InputTitle"> ユーザ名 </label > 
+    <input type ="text" class ="form-control" id ="InputTitle" name = user >
+  </div > 
+  <div class ="form-group"> 
+    <label for ="InputTitle"> パスワード </label > 
+    <input type="text" class ="form-control" id ="InputText" name = pass >
+  </div >
+
+  <button type ="submit" class ="btn btn-primary"> 作成 </button >
+</form > 
+
+{% endblock %} 
+
+

@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block body %}
+<h5>
+  ようこそ{{ username }}さん
+</h5 >
+
+<br>
+<h5>
+  正解 {{correct_ratio[0]}} / {{correct_ratio[1]}}  
+</h5>
+<br>
+<br>
+<a href="{{ url_for('start_asking', id=1) }}"
+   class ="btn btn-primary"> 
+すべて解く 
+</a >
+
+{% endblock %}
+
